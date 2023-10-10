@@ -17,7 +17,11 @@
 ## 编译与烧录
 
 ```shell
+# 调试模式
 cargo rb turns_led
+
+# 生产模式
+cargo rrb turns_led
 ```
 
 ## 参考文档

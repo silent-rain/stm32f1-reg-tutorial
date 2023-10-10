@@ -1,6 +1,7 @@
-#![allow(clippy::empty_loop)]
+//!点亮 LED 灯
 #![no_std]
 #![no_main]
+#![allow(clippy::empty_loop)]
 
 use stm32f1_core::hardware::{acr::set_flash, cfgr::set_clock, syst::delay_ms};
 
