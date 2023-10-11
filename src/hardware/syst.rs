@@ -7,10 +7,10 @@ use cortex_m::peripheral::{syst::SystClkSource, SYST};
 pub fn delay_ms(syst: &mut SYST, ms: u32) {
     // 配置 SysTick
     // 将 SysTick 定时器设置为每 1ms（1000μs）回绕一次。因为系统时钟为 72MHz，所以每 1ms 有 72,000 个时钟周期。
-    // 码设置了 SysTick 的重载值。当 SysTick 的计数值达到这个值时，它会自动清零并设置 "已经回绕" 标志
 
     // 内部时钟源，时钟频率为72MHz
     syst.set_clock_source(SystClkSource::Core);
+    // 设置 SysTick 的重载值。当 SysTick 的计数值达到这个值时，它会自动清零并设置 "已经回绕" 标志
     syst.set_reload(72_000_000 / 1000);
 
     // 设置外部定时器为处理器时钟驱动
