@@ -9,6 +9,11 @@
 
 ## 示例目录
 
+### 延迟
+
+- [汇编延迟](./src/bin/asm_delay.rs)
+- [系统定时器延迟](./src/bin/asm_delay.rs)
+
 ### GPIO
 
 - [点亮 LED 灯](./src/bin/turns_led.rs)
