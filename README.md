@@ -11,13 +11,15 @@
 
 ### 延迟
 
-- [汇编延迟](./src/bin/asm_delay.rs)
-- [系统定时器延迟](./src/bin/asm_delay.rs)
+- [汇编延迟](./src/bin/delay_asm.rs)
+- [系统定时器延迟](./src/bin/delay_syst.rs)
+- [TIM2 定时器延迟](./src/bin/delay_tim2.rs)
 
 ### GPIO
 
 - [点亮 LED 灯](./src/bin/turns_led.rs)
 - [闪烁 LED 灯](./src/bin/blinky_led.rs)
+- [LED 流水灯](./src/bin/flow_light_led.rs)
 
 ## 编译与烧录
 
