@@ -13,8 +13,6 @@
 ```
 我希望你担任 Rust 编程语言嵌入式开发人员。逐步引导我掌握使用 stm32f1 crate 以寄存器的方式进行嵌入式开发的知识点。
 请以操作寄存器的方式进行开发。
-请给出一个 TIM2 定时器延迟点亮 LED 灯的示例。
-例如将以下代码准换为寄存器的操作：
-let mut delay = dp.TIM2.delay_us(&clocks);
-delay.delay_ms(1000_u32);
+例如将以下代码转换为寄存器的操作：
+ gpiob.pb1.into_pull_up_input(&mut gpiob.crl);
 ```
