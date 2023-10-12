@@ -46,7 +46,11 @@ fn main() -> ! {
     // KEY
     // 配置引脚为上拉输入模式
     // 输入模式中速度是没有用的, 无需配置
-    gpiob.crl.modify(|_, w| w.cnf1().alt_push_pull());
+    // 设置引脚为高电平
+    gpiob.bsrr.write(|w| unsafe { w.bits(1 << 1) });
+    gpiob
+        .crl
+        .modify(|_, w| w.mode1().input().cnf1().alt_push_pull());
     // gpiob.bsrr.write(|w| unsafe { w.bits(1 << 1) });
 
     // 设置 PB1 为输入模式 (00)
@@ -62,6 +66,10 @@ fn main() -> ! {
         Gpioa::new(gpioa, 2),
     ];
     let key_pin = Gpiob::new(gpiob, 1);
+    // 默认熄灯
+    for led in &leds {
+        led.set_high();
+    }
 
     loop {
         println!("start...");
@@ -70,7 +78,7 @@ fn main() -> ! {
                 led.toggle();
             }
         }
-        delay_ms(&mut syst, 1000);
+        delay_ms(&mut syst, 500);
     }
 }
 
@@ -177,14 +185,18 @@ impl<'a> Gpiob<'a> {
 /// 获取按键的状态
 fn get_key_status(key: &Gpiob, syst: &mut SYST) -> bool {
     println!("key...");
-    if !key.is_set_low() {
+    if !key.is_low() {
         return false;
     }
+    println!("{:?}", key.is_low());
+    println!("{:?}", key.is_high());
+    println!("{:?}", key.is_set_low());
+    println!("{:?}", key.is_set_high());
     println!("key2...");
     // 按键按下抖动
     delay_ms(syst, 20_u32);
     // 按着不动, 松手后跳出循环
-    while key.is_set_low() {}
+    while key.is_low() {}
     // 按键松开抖动
     delay_ms(syst, 20_u32);
     println!("key3...");
