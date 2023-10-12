@@ -54,14 +54,14 @@ fn main() -> ! {
 }
 
 /// 是否为低电平
-fn is_set_low(gpioa: &GPIOA, pin: u16) -> bool {
+fn is_pin_low(gpioa: &GPIOA, pin: u16) -> bool {
     let mask = 1 << pin;
     let bit = gpioa.idr.read().bits() & mask;
     bit == 0
 }
 
 /// 是否为高电平
-fn is_set_high(gpioa: &GPIOA, pin: u16) -> bool {
+fn is_pin_high(gpioa: &GPIOA, pin: u16) -> bool {
     let mask = 1 << pin;
     let bit = gpioa.idr.read().bits() & mask;
     bit == 1
@@ -79,7 +79,7 @@ fn set_low(gpioa: &GPIOA, pin: u16) {
 
 /// 翻转引脚电平
 fn toggle(gpioa: &GPIOA, pin: u16) {
-    if is_set_low(gpioa, pin) {
+    if is_pin_low(gpioa, pin) {
         set_high(gpioa, pin)
     } else {
         set_low(gpioa, pin)

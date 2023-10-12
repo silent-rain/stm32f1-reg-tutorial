@@ -66,7 +66,7 @@ fn is_low(gpioa: &GPIOA) -> bool {
 }
 
 /// 是否为低电平
-fn is_set_low(gpioa: &GPIOA, pin: u16) -> bool {
+fn is_pin_low(gpioa: &GPIOA, pin: u16) -> bool {
     // 获取 PA1 引脚对应的 IDR 寄存器中的位的掩码
     let mask = 1 << pin;
     // 读取 IDR 寄存器中对应的位的值
@@ -82,7 +82,7 @@ fn is_high(gpioa: &GPIOA) -> bool {
 }
 
 /// 是否为高电平
-fn is_set_high(gpioa: &GPIOA, pin: u16) -> bool {
+fn is_pin_high(gpioa: &GPIOA, pin: u16) -> bool {
     // 获取 PA1 引脚对应的 IDR 寄存器中的位的掩码
     let mask = 1 << pin;
     // 读取 IDR 寄存器中对应的位的值
@@ -115,7 +115,7 @@ fn set_low(gpioa: &GPIOA, pin: u16) {
 
 /// 翻转引脚电平
 fn toggle(gpioa: &GPIOA, pin: u16) {
-    if is_set_low(gpioa, pin) {
+    if is_pin_low(gpioa, pin) {
         set_high(gpioa, pin)
     } else {
         set_low(gpioa, pin)
