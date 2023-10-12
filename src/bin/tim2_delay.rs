@@ -20,7 +20,7 @@ fn main() -> ! {
 
     let rcc = &dp.RCC;
     let flash = &dp.FLASH;
-    let tim2 = &dp.TIM2;
+    let tim2 = dp.TIM2;
 
     // 设置 Flash
     set_flash(flash);
@@ -32,34 +32,32 @@ fn main() -> ! {
     // 使能定时器2时钟
     rcc.apb1enr.modify(|_, w| w.tim2en().set_bit());
 
-    // 设置定时器2的重装值为72M/1000，即每毫秒计数一次
-    tim2.arr.write(|w| w.arr().bits(65535));
-
-    // 设置定时器2的预分频值为0，即不分频
-    tim2.psc.write(|w| w.psc().bits(0));
-
-    // 清除定时器2的更新事件标志
-    tim2.sr.modify(|_, w| w.uif().clear_bit());
-
-    // 启动定时器2
-    tim2.cr1.modify(|_, w| w.cen().set_bit());
+    // 封装定时器
+    let mut delay = Delay { tim: tim2 };
 
     loop {
         for i in 0..10 {
             println!("i={:?}", i);
             // 延时一秒
-            delay_ms(tim2, 1000);
+            delay.delay_ms(1000);
         }
     }
 }
 
-// 定义一个延时函数，参数为毫秒数
-fn delay_ms(tim2: &TIM2, ms: u32) {
-    // 循环ms次
-    for _ in 0..ms {
-        // 等待定时器2的更新事件标志置位，即一毫秒过去
-        while tim2.sr.read().uif().bit_is_clear() {}
-        // 清除定时器2的更新事件标志
-        tim2.sr.modify(|_, w| w.uif().clear_bit());
+struct Delay {
+    tim: TIM2,
+}
+
+impl Delay {
+    fn delay_ms(&mut self, ms: u16) {
+        // 设置 TIM2 的预分频器和自动重装载寄存器
+        self.tim.psc.write(|w| w.psc().bits(7999)); // 预分频器
+        self.tim.arr.write(|w| w.arr().bits(1000)); // 自动重装载寄存器
+
+        self.tim.cr1.modify(|_, w| w.cen().set_bit()); // 启动 TIM2
+
+        while self.tim.sr.read().uif().bit_is_clear() {} // 等待更新事件标志
+
+        self.tim.sr.modify(|_, w| w.uif().clear_bit()); // 清除更新事件标志
     }
 }
