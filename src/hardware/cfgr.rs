@@ -38,6 +38,9 @@ pub fn set_clock(rcc: &RCC) {
     // 等待 PLL 稳定
     while rcc.cr.read().pllrdy().bit_is_clear() {}
 
-    // 启用 APB2 的时钟
+    // 启用 APB2 的时钟 GPIOA
     rcc.apb2enr.modify(|_, w| w.iopaen().enabled());
+
+    // 启用 APB2 的时钟 GPIOB
+    rcc.apb2enr.modify(|_, w| w.iopben().set_bit());
 }
