@@ -24,6 +24,8 @@
 - [蜂鸣器](./src/bin/buzzer.rs)
 - [光敏传感器控制蜂鸣器](./src/bin/light_sensor_control_buzzer.rs)
 
+### 中断
+
 ## 编译与烧录
 
 ```shell
