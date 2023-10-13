@@ -20,6 +20,9 @@
 - [点亮 LED 灯](./src/bin/turns_led.rs)
 - [闪烁 LED 灯](./src/bin/blinky_led.rs)
 - [LED 流水灯](./src/bin/flow_light_led.rs)
+- [按键控制 LED](./src/bin/flow_light_led.rs)
+- [蜂鸣器](./src/bin/buzzer.rs)
+- [光敏传感器控制蜂鸣器](./src/bin/light_sensor_control_buzzer.rs)
 
 ## 编译与烧录
 
