@@ -18,6 +18,7 @@ use stm32f1::stm32f103::{interrupt, EXTI};
 use stm32f1::stm32f103::{CorePeripherals, Interrupt, Peripherals};
 
 static G_EXTI: Mutex<RefCell<Option<EXTI>>> = Mutex::new(RefCell::new(None));
+
 #[entry]
 fn main() -> ! {
     let dp = Peripherals::take().unwrap();

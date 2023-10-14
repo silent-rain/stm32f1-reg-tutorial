@@ -26,7 +26,8 @@
 
 ### 中断
 
-- [对射式红外传感器触发中断计数](./src/bin/opposing_infrared_sensor_count.rs)
+- [对射式红外传感器触发中断计数](./src/bin/opposing_infrared_sensor_count_irq.rs)
+- [按键中断控制 LED 灯](./src/bin/key_control_led_exti_irq.rs)
 
 ## 编译与烧录
 
