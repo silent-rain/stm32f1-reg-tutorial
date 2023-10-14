@@ -28,6 +28,9 @@ fn main() -> ! {
     // 设置时钟
     set_clock(rcc);
 
+    // 启用 APB2 GPIOB 的时钟
+    rcc.apb2enr.modify(|_, w| w.iopben().set_bit());
+
     // 蜂鸣器
     // 配置引脚为推挽输出模式
     gpiob

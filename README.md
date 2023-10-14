@@ -26,6 +26,8 @@
 
 ### 中断
 
+- [对射式红外传感器触发中断计数](./src/bin/opposing_infrared_sensor_count.rs)
+
 ## 编译与烧录
 
 ```shell

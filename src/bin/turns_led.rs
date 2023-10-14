@@ -29,6 +29,9 @@ fn main() -> ! {
     println!("配置时钟树");
     set_clock(rcc);
 
+    // 启用 APB2 GPIOA 的时钟
+    rcc.apb2enr.modify(|_, w| w.iopaen().enabled());
+
     // 配置为推挽输出模式
     println!("配置引脚");
     gpioa.crl.modify(|_, w| {

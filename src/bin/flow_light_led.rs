@@ -30,6 +30,9 @@ fn main() -> ! {
     // 设置时钟
     set_clock(rcc);
 
+    // 启用 APB2 GPIOA 的时钟
+    rcc.apb2enr.modify(|_, w| w.iopaen().enabled());
+
     // 配置引脚为推挽输出模式
     gpioa.crl.modify(|_, w| {
         w.mode0().output50().cnf0().push_pull(); // LED 0
