@@ -66,9 +66,9 @@ fn main() -> ! {
     // Event mask register
     // exti.emr.modify(|_, w| w.mr14().set_bit());
 
-    // 在 EXTI 上升沿生成中断
+    // 启用 EXTI 上升沿生成中断
     exti.rtsr.modify(|_, w| w.tr14().enabled());
-    // 禁用 EXTI 下降沿生成中断
+    // 禁用 EXTI 下升沿生成中断
     // exti.ftsr
     // .modify(|r, w| unsafe { w.bits(r.bits() & !(1 << 14)) });
     exti.ftsr.modify(|_, w| w.tr14().disabled());
