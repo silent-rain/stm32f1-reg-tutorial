@@ -43,7 +43,7 @@ fn main() -> ! {
     rcc.apb2enr
         .modify(|_, w| w.iopben().enabled().afioen().enabled());
 
-    // 光敏传感器
+    // 对射式红外传感器
     // 配置引脚为上拉输入模式
     gpiob
         .crh
