@@ -34,5 +34,5 @@ let infrared_sensor = gpiob.pb14.into_pull_up_input(&mut gpiob.crh);
 
 ```
 我希望你担任 Rust 编程语言嵌入式开发专家。逐步引导我掌握使用 stm32f1 crate 以寄存器的方式进行嵌入式开发的知识点。
-以下是对射式红外传感器计数的示例，代码在执行时并没有触发中断，这是什么原因，并确保正确。
+以下是RTC 告警中断的示例，请帮我补充todo信息，并确保正确。
 ```

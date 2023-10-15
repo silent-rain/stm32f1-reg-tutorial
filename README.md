@@ -31,6 +31,7 @@
 - [系统定时器中断](./src/bin/sys_tick_irq.rs)
 - [TIM2 中断](./src/bin/tim2_timer_irq.rs)
 - [TIM2 定时器外部时钟中断](./src/bin/tim2_external_clock_irq.rs)
+- x[RTC 告警中断](./src/bin/rtc_alarm_irq.rs)
 
 ## 编译与烧录
 
